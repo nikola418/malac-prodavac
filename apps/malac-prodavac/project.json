@@ -1,0 +1,24 @@
+{
+  "name": "malac-prodavac",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/malac-prodavac/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "malac-prodavac:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "malac-prodavac:build:development"
+        },
+        "production": {
+          "buildTarget": "malac-prodavac:build:production"
+        }
+      }
+    }
+  }
+}
