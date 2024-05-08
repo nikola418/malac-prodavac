@@ -1,0 +1,22 @@
+{
+  "name": "data-access-users",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/data-access-users/src",
+  "projectType": "library",
+  "tags": [],
+  "implicitDependencies": ["prisma-schema"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build"],
+      "options": {
+        "outputPath": "dist/libs/data-access-users",
+        "tsConfig": "libs/data-access-users/tsconfig.lib.json",
+        "packageJson": "libs/data-access-users/package.json",
+        "main": "libs/data-access-users/src/index.ts",
+        "assets": ["libs/data-access-users/*.md"]
+      }
+    }
+  }
+}

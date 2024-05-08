@@ -1,0 +1,22 @@
+{
+  "name": "prisma-module",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/prisma-module/src",
+  "projectType": "library",
+  "tags": [],
+  "implicitDependencies": ["prisma-schema"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^prisma-generate"],
+      "options": {
+        "outputPath": "dist/libs/prisma-module",
+        "tsConfig": "libs/prisma-module/tsconfig.lib.json",
+        "packageJson": "libs/prisma-module/package.json",
+        "main": "libs/prisma-module/src/index.ts",
+        "assets": ["libs/prisma-module/*.md"]
+      }
+    }
+  }
+}

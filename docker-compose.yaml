@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    volumes:
+      - postgres-data:/data
+    networks:
+      - database-network
+
+  rabbitmq:
+    image: rabbitmq:3
+    ports:
+      - '5672:5672'
+    networks:
+      - backend-network
+
+  auth:
+    build:
+      args:
+        - APP_NAME=auth
+      target: build
+      dockerfile: Dockerfile
+    command: pnpx nx run auth:serve --configuration=development
+    ports:
+      - '3000:3000'
+    env_file:
+      - apps/auth/.env
+      - .env
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - database-network
+      - backend-network
+    depends_on:
+      - postgres
+      - rabbitmq
+
+  users:
+    build:
+      args:
+        - APP_NAME=users
+      target: build
+      dockerfile: Dockerfile
+    command: pnpx nx run users:serve --configuration=development
+    ports:
+      - '3001:3001'
+    env_file:
+      - apps/users/.env
+      - .env
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - database-network
+      - backend-network
+    depends_on:
+      - postgres
+      - rabbitmq
+
+volumes:
+  postgres-data: {}
+
+networks:
+  database-network:
+  backend-network:
