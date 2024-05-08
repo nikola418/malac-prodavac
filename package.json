@@ -2,9 +2,17 @@
   "name": "@malac-prodavac/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "docker:compose:up": "docker compose up -d"
+  },
+  "nx": {
+    "targets": {
+      "docker:compose:up": {}
+    }
+  },
   "private": true,
   "dependencies": {
+    "@fastify/cookie": "^9.3.1",
     "@fastify/static": "^7.0.3",
     "@nestjs/common": "^10.0.2",
     "@nestjs/config": "^3.2.2",
@@ -22,6 +30,7 @@
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "fastify": "4.26.2",
     "nestjs-prisma": "^0.23.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",

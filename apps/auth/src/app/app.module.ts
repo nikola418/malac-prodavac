@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
+import { PrismaModule } from '@malac-prodavac/prisma-module';
 
 @Module({
   imports: [
@@ -19,7 +20,10 @@ import { AuthModule } from './auth/auth.module';
       }),
       inject: [ConfigService],
     }),
-    DataAccessUsersModule,
+    {
+      module: DataAccessUsersModule,
+      imports: [PrismaModule],
+    },
     AuthModule,
   ],
 })

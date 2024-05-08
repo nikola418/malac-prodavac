@@ -1,3 +1,3 @@
-import { PrismaModule as NestPrismaModule } from 'nestjs-prisma';
+import { PrismaModule as NestjsPrismaModule } from 'nestjs-prisma';
 
-export class PrismaModule extends NestPrismaModule {}
+export class PrismaModule extends NestjsPrismaModule {}

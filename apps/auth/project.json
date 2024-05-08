@@ -22,11 +22,10 @@
     },
     "container": {
       "executor": "@nx-tools/nx-container:build",
-      "dependsOn": ["^build"],
       "options": {
         "engine": "docker",
-        "build-args": ["APP_NAME=auth"],
         "file": "{workspaceRoot}/Dockerfile",
+        "build-args": ["APP_NAME=auth"],
         "metadata": {
           "images": ["auth"],
           "load": true,

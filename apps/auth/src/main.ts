@@ -8,15 +8,18 @@ import {
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 import { RmqOptions, Transport } from '@nestjs/microservices';
+import fastifyCookie from '@fastify/cookie';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter(),
+    new FastifyAdapter({}),
     {
       logger: new Logger(AppModule.name),
     }
   );
+
+  await app.register(fastifyCookie, {});
 
   const configService = app.get(ConfigService);
   const globalPrefix = 'api';

@@ -4,6 +4,7 @@
   "sourceRoot": "libs/common/src",
   "projectType": "library",
   "tags": [],
+  "implicitDependencies": ["prisma-schema"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",

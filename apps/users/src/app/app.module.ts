@@ -1,6 +1,9 @@
-import { AUTH_SERVICE } from '@malac-prodavac/common';
+import { AUTH_SERVICE, JwtAuthGuard } from '@malac-prodavac/common';
+import { DataAccessUsersModule } from '@malac-prodavac/data-access-users';
+import { PrismaModule } from '@malac-prodavac/prisma-module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
@@ -21,6 +24,12 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         inject: [ConfigService],
       },
     ]),
+    PrismaModule,
+    {
+      module: DataAccessUsersModule,
+      imports: [PrismaModule],
+    },
   ],
+  providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }],
 })
 export class AppModule {}

@@ -7,7 +7,9 @@ import {
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
-import { RmqOptions, Transport } from '@nestjs/microservices';
+import { ClientProxy, RmqOptions, Transport } from '@nestjs/microservices';
+import fastifyCookie from '@fastify/cookie';
+import { AUTH_SERVICE, JwtAuthGuard } from '@malac-prodavac/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -17,6 +19,8 @@ async function bootstrap() {
       logger: new Logger(AppModule.name),
     }
   );
+
+  await app.register(fastifyCookie, {});
 
   const configService = app.get(ConfigService);
   const globalPrefix = 'api';

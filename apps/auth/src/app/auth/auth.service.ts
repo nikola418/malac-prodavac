@@ -7,18 +7,6 @@ import { compareSync } from 'bcrypt';
 
 @Injectable()
 export class AuthService {
-  me(
-    res: any,
-    user: Partial<UserEntity>
-  ): Partial<UserEntity> | PromiseLike<Partial<UserEntity>> {
-    throw new Error('Method not implemented.');
-  }
-  logout(res: Response) {
-    throw new Error('Method not implemented.');
-  }
-  login(res: any, user: Partial<UserEntity>): Promise<UserEntity[]> {
-    throw new Error('Method not implemented.');
-  }
   constructor(
     private readonly dataAccessUsersService: DataAccessUsersService
   ) {}
@@ -36,5 +24,23 @@ export class AuthService {
     if (!compareSync(password, user.password)) throw new BadRequestException();
 
     return user;
+  }
+
+  getUser({ id }: Partial<UserEntity>) {
+    return this.dataAccessUsersService.findUniqueOrThrow({
+      where: { id },
+    });
+  }
+  me(
+    res: any,
+    user: Partial<UserEntity>
+  ): Partial<UserEntity> | PromiseLike<Partial<UserEntity>> {
+    throw new Error('Method not implemented.');
+  }
+  logout(res: Response) {
+    throw new Error('Method not implemented.');
+  }
+  login(res: any, user: Partial<UserEntity>): Promise<UserEntity[]> {
+    throw new Error('Method not implemented.');
   }
 }

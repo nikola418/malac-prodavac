@@ -7,5 +7,6 @@ docker-compose*
 .gitignore
 README.md
 LICENSE
+.env
 .vscode
-.nx/**/*
+.nx

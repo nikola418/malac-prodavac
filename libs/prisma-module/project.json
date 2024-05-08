@@ -9,7 +9,6 @@
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
-      "dependsOn": ["^prisma-generate"],
       "options": {
         "outputPath": "dist/libs/prisma-module",
         "tsConfig": "libs/prisma-module/tsconfig.lib.json",

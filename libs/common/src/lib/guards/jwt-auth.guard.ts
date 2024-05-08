@@ -25,7 +25,7 @@ export class JwtAuthGuard implements CanActivate {
     return this.authClientProxy
       .send<User>('authenticate', { Authentication: jwt })
       .pipe(
-        tap((res) => {
+        tap((res: Partial<User>) => {
           context.switchToHttp().getRequest().user = res;
         }),
         map(() => true),
