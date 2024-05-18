@@ -21,26 +21,14 @@ export class AuthService {
       where: { email },
     });
 
-    if (!compareSync(password, user.password)) throw new BadRequestException();
+    if (compareSync(password, user.password)) return user;
 
-    return user;
+    throw new BadRequestException();
   }
 
-  getUser({ id }: Partial<UserEntity>) {
+  public getUser({ id }: Partial<UserEntity>): Promise<UserEntity> {
     return this.dataAccessUsersService.findUniqueOrThrow({
       where: { id },
     });
-  }
-  me(
-    res: any,
-    user: Partial<UserEntity>
-  ): Partial<UserEntity> | PromiseLike<Partial<UserEntity>> {
-    throw new Error('Method not implemented.');
-  }
-  logout(res: Response) {
-    throw new Error('Method not implemented.');
-  }
-  login(res: any, user: Partial<UserEntity>): Promise<UserEntity[]> {
-    throw new Error('Method not implemented.');
   }
 }

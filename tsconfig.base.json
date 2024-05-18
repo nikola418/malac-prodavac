@@ -21,6 +21,9 @@
       "@malac-prodavac/common": [
         "libs/common/src/index.ts"
       ],
+      "@malac-prodavac/data-access-customers": [
+        "libs/data-access-customers/src/index.ts"
+      ],
       "@malac-prodavac/data-access-users": [
         "libs/data-access-users/src/index.ts"
       ],

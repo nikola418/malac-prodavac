@@ -12,7 +12,7 @@ COPY . .
 FROM base as development
 ENV NODE_ENV="development"
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm exec nx run prisma-schema:prisma:generate
+RUN pnpm exec nx run-many -t prisma:generate
 RUN pnpm exec nx run ${APP_NAME}:build
 
 FROM base as production

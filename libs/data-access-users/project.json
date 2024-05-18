@@ -4,7 +4,7 @@
   "sourceRoot": "libs/data-access-users/src",
   "projectType": "library",
   "tags": [],
-  "implicitDependencies": ["prisma-schema"],
+  "implicitDependencies": ["prisma-schema-postgresql"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",

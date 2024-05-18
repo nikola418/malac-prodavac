@@ -136,6 +136,9 @@ devDependencies:
   '@swc/helpers':
     specifier: ~0.5.2
     version: 0.5.11
+  '@types/bcrypt':
+    specifier: ^5.0.2
+    version: 5.0.2
   '@types/jest':
     specifier: ^29.4.0
     version: 29.5.12
@@ -3513,6 +3516,12 @@ packages:
     resolution: {integrity: sha512-WXCyOcRtH37HAUkpXhUduaxdm82b4GSlyTqajXviN4EfiuPgNYR109xMCKvpl6zPIpua0DGlMEDCq+g8EdoheQ==}
     dependencies:
       '@babel/types': 7.24.5
+    dev: true
+
+  /@types/bcrypt@5.0.2:
+    resolution: {integrity: sha512-6atioO8Y75fNcbmj0G7UjI9lXN2pQ/IGJ2FWT4a/btd0Lk9lQalHLKhkgKVZ3r+spnmWUKfbMi1GEe9wyHQfNQ==}
+    dependencies:
+      '@types/node': 18.16.20
     dev: true
 
   /@types/body-parser@1.19.5:

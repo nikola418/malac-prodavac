@@ -33,16 +33,21 @@ async function bootstrap() {
     },
   });
   app.setGlobalPrefix(globalPrefix);
-  app.useGlobalPipes(new ValidationPipe({}));
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
   const config = new DocumentBuilder()
+    .addCookieAuth(
+      'Authentication',
+      { in: 'Header', type: 'http' },
+      'Authentication'
+    )
     .setTitle('Auth example')
     .setDescription('The auth API description')
     .setVersion('1.0')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document);
+  SwaggerModule.setup('docs', app, document);
 
   const httpPort = configService.getOrThrow<number>('HTTP_PORT');
 

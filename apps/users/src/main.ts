@@ -1,15 +1,14 @@
+import fastifyCookie from '@fastify/cookie';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
+import { RmqOptions, Transport } from '@nestjs/microservices';
 import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
-import { ClientProxy, RmqOptions, Transport } from '@nestjs/microservices';
-import fastifyCookie from '@fastify/cookie';
-import { AUTH_SERVICE, JwtAuthGuard } from '@malac-prodavac/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -30,12 +29,11 @@ async function bootstrap() {
     options: {
       noAck: false,
       urls: [configService.getOrThrow<string>('RMQ_URL')],
-      queue: 'auth',
     },
   });
 
   app.setGlobalPrefix(globalPrefix);
-  app.useGlobalPipes(new ValidationPipe({}));
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
   const config = new DocumentBuilder()
     .setTitle('Users example')
@@ -44,7 +42,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document);
+  SwaggerModule.setup('docs', app, document);
 
   const httpPort = configService.getOrThrow<number>('HTTP_PORT');
 

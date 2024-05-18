@@ -14,7 +14,6 @@
     ],
     "sharedGlobals": []
   },
-  "cacheDirectory": "/tmp/cache",
   "plugins": [
     {
       "plugin": "@nx/webpack/plugin",
@@ -35,7 +34,13 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/auth-e2e/**/*", "apps/users-e2e/**/*"]
+      "exclude": [
+        "apps/auth-e2e/**/*",
+        "apps/users-e2e/**/*",
+        "apps/customers-e2e/**/*",
+        "apps/couriers-e2e/**/*",
+        "apps/shops-e2e/**/*"
+      ]
     }
   ],
   "targetDefaults": {

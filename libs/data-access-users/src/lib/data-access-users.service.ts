@@ -10,13 +10,6 @@ export class DataAccessUsersService {
 
   private static readonly include: Prisma.UserInclude = { customer: true };
 
-  public create(args: Prisma.UserCreateArgs<DefaultArgs>): Promise<UserEntity> {
-    return this.prismaService.user.create({
-      include: DataAccessUsersService.include,
-      ...args,
-    });
-  }
-
   public findUniqueOrThrow(
     args?: Prisma.UserFindUniqueOrThrowArgs<DefaultArgs>
   ): Promise<UserEntity> {
