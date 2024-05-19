@@ -14,9 +14,9 @@ import { JwtService } from '@nestjs/jwt';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { FastifyReply } from 'fastify';
-import { AuthService } from './auth.service';
-import { LoginDto } from './dto';
-import { JwtAuthGuard, LocalAuthGuard } from './guards';
+import { LoginDto } from '../dto';
+import { JwtAuthGuard, LocalAuthGuard } from '../guards';
+import { AuthService } from '../services/auth.service';
 
 @ApiTags('auth')
 @Controller('auth')

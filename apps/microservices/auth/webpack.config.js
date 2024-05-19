@@ -5,6 +5,24 @@ module.exports = {
   output: {
     path: join(__dirname, '../../dist/apps/auth'),
   },
+  module: {
+    // rules: [
+    //   {
+    //     test: /\.tsx?$/,
+    //     loader: 'ts-loader',
+    //     options: {
+    //       getCustomTransformers: (program) => ({
+    //         before: [
+    //           require('@nestjs/swagger/plugin').before(
+    //             { classValidatorShim: false, introspectComments: true },
+    //             program
+    //           ),
+    //         ],
+    //       }),
+    //     },
+    //   },
+    // ],
+  },
   plugins: [
     new NxAppWebpackPlugin({
       target: 'node',

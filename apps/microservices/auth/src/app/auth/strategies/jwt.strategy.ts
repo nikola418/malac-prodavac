@@ -7,7 +7,7 @@ import {
   StrategyOptionsWithoutRequest,
 } from 'passport-jwt';
 import { UserEntity } from '@malac-prodavac/data-access-users';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { FastifyRequest } from 'fastify';
 
 @Injectable()
